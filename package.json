@@ -11,6 +11,7 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
+    "prepare": "npm run build",
     "prepack": "tsc -P tsconfig_prod.json",
     "lint": "tslint --project tsconfig.json --type-check 'src/**/*.ts' 'test/**/*.test.ts' 'bin/**/*.ts' --exclude '**/*.d.ts'",
     "build": "tsc",
