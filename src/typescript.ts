@@ -12,7 +12,8 @@ function nameIsReservedKeyword (name: string): boolean {
     const reservedKeywords = [
         'string',
         'number',
-        'package'
+        'package',
+        'object'
     ]
     return reservedKeywords.indexOf(name) !== -1
 }
