@@ -103,7 +103,6 @@ fabric.properties
 x64/
 x86/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -336,7 +335,7 @@ paket-files/
 .idea/
 *.sln.iml
 
-*.js
+
 typings/
 *.d.ts
 test/actual/*
