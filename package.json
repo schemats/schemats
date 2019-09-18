@@ -11,6 +11,7 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
+    "prepack": "npm run build",
     "lint": "tslint --project tsconfig.json --type-check 'src/**/*.ts' 'test/**/*.test.ts' 'bin/**/*.ts' --exclude '**/*.d.ts'",
     "build": "tsc",
     "dependency-check": "dependency-check . --entry bin/schemats.js --missing --no-dev",
