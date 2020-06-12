@@ -33,13 +33,15 @@ export class PostgresDatabase implements Database {
                     return column
                 case 'int2':
                 case 'int4':
-                case 'int8':
                 case 'float4':
                 case 'float8':
                 case 'numeric':
                 case 'money':
                 case 'oid':
                     column.tsType = 'number'
+                    return column
+                case 'int8':
+                    column.tsType = 'bigint'
                     return column
                 case 'bool':
                     column.tsType = 'boolean'
@@ -55,12 +57,14 @@ export class PostgresDatabase implements Database {
                     return column
                 case '_int2':
                 case '_int4':
-                case '_int8':
                 case '_float4':
                 case '_float8':
                 case '_numeric':
                 case '_money':
                     column.tsType = 'Array<number>'
+                    return column
+                case '_int8':
+                    column.tsType = 'Array<bigint>'
                     return column
                 case '_bool':
                     column.tsType = 'Array<boolean>'
