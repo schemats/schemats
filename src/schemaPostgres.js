@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -64,13 +63,15 @@ var PostgresDatabase = /** @class */ (function () {
                     return column;
                 case 'int2':
                 case 'int4':
-                case 'int8':
                 case 'float4':
                 case 'float8':
                 case 'numeric':
                 case 'money':
                 case 'oid':
                     column.tsType = 'number';
+                    return column;
+                case 'int8':
+                    column.tsType = 'bigint';
                     return column;
                 case 'bool':
                     column.tsType = 'boolean';
@@ -86,12 +87,14 @@ var PostgresDatabase = /** @class */ (function () {
                     return column;
                 case '_int2':
                 case '_int4':
-                case '_int8':
                 case '_float4':
                 case '_float8':
                 case '_numeric':
                 case '_money':
                     column.tsType = 'Array<number>';
+                    return column;
+                case '_int8':
+                    column.tsType = 'Array<bigint>';
                     return column;
                 case '_bool':
                     column.tsType = 'Array<boolean>';

@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -35,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var assert = require("assert");
 var sinon = require("sinon");
@@ -58,7 +58,7 @@ describe('MysqlDatabase', function () {
         sandbox.restore();
     });
     describe('query', function () {
-        it('query calls query async', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('query calls query async', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, db.query('SELECT * FROM test_table')];
@@ -77,7 +77,7 @@ describe('MysqlDatabase', function () {
         after(function () {
             sandbox.stub(MysqlDBReflection.prototype, 'queryAsync');
         });
-        it('query has error', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('query has error', function () { return __awaiter(_this, void 0, void 0, function () {
             var testDb;
             return __generator(this, function (_a) {
                 mysql.createConnection.returns({
@@ -95,7 +95,7 @@ describe('MysqlDatabase', function () {
                 return [2 /*return*/];
             });
         }); });
-        it('query returns with results', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('query returns with results', function () { return __awaiter(_this, void 0, void 0, function () {
             var testDb, results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -116,7 +116,7 @@ describe('MysqlDatabase', function () {
         }); });
     });
     describe('getEnumTypes', function () {
-        it('writes correct query with schema name', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('writes correct query with schema name', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -134,7 +134,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('writes correct query without schema name', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('writes correct query without schema name', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -152,7 +152,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('handles response', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('handles response', function () { return __awaiter(_this, void 0, void 0, function () {
             var enumTypes;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -172,7 +172,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('same column same value is accepted', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('same column same value is accepted', function () { return __awaiter(_this, void 0, void 0, function () {
             var enumTypes;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -191,7 +191,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('same column different value conflict', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('same column different value conflict', function () { return __awaiter(_this, void 0, void 0, function () {
             var e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -217,7 +217,7 @@ describe('MysqlDatabase', function () {
         }); });
     });
     describe('getTableDefinitions', function () {
-        it('writes correct query', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('writes correct query', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -235,7 +235,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('handles response', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('handles response', function () { return __awaiter(_this, void 0, void 0, function () {
             var schemaTables;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -271,7 +271,7 @@ describe('MysqlDatabase', function () {
         after(function () {
             tableTypesSandbox.restore();
         });
-        it('gets custom types from enums', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('gets custom types from enums', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -285,7 +285,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('gets table definitions', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('gets table definitions', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -308,7 +308,7 @@ describe('MysqlDatabase', function () {
         }); });
     });
     describe('getSchemaTables', function () {
-        it('writes correct query', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('writes correct query', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -327,7 +327,7 @@ describe('MysqlDatabase', function () {
                 }
             });
         }); });
-        it('handles table response', function () { return __awaiter(void 0, void 0, void 0, function () {
+        it('handles table response', function () { return __awaiter(_this, void 0, void 0, function () {
             var schemaTables;
             return __generator(this, function (_a) {
                 switch (_a.label) {

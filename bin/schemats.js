@@ -1,15 +1,10 @@
 #! /usr/bin/env node
 "use strict";
-/**
- * Commandline interface
- * Created by xiamx on 2016-08-10.
- */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -40,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var yargs = require("yargs");
 var fs = require("fs");
@@ -74,7 +70,7 @@ var argv = yargs
     .help('h')
     .alias('h', 'help')
     .argv;
-(function () { return __awaiter(void 0, void 0, void 0, function () {
+(function () { return __awaiter(_this, void 0, void 0, function () {
     var formattedOutput, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
